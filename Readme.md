@@ -17,3 +17,8 @@
 * The billing system should allow users to add multiple items to a bill.
 * The application should handle errors gracefully (e.g., invalid inputs, insufficient inventory, etc.).
 * Provide an option to view the final bill with the list of items and the total price.
+
+## Authors
+[@prajwalgautam](https://www.github.com/prajwal18)
+
+[@UneshThakuri](https://www.github.com/Eunesh)
