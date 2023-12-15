@@ -45,13 +45,19 @@ class Inventory < JsonConverter
 
     def has_item(id)
       is_present = get_all_items.any? { |item| item.id == id }
-      is_present
+      if (is_present)
+        return true
+      else
+        return false
+      end
     end
 
     def edit_item_name(id, name)
       # edit an item's name in the inventory
       items = get_all_items.collect do |item|
-        item.name = name if item.id == id
+         if item.id == id
+          item.name = name
+         end
         item
       end
 
@@ -71,7 +77,7 @@ class Inventory < JsonConverter
     def decrease_item_stock_by(id, quantity)
       # decrease item stock in the inventory by (quantity)
       items = get_all_items.collect do |item|
-        item.quantity -= quantity if item.id == id
+        item.quantity -= quantity if item.id == id and item.quantity != 0
         item
       end
 
@@ -80,6 +86,7 @@ class Inventory < JsonConverter
 
     def increase_item_stock_by(id, quantity)
       # increases item stock in the inventory by (quantity)
+
       items = get_all_items.collect do |item|
         item.quantity += quantity if item.id == id
         item
