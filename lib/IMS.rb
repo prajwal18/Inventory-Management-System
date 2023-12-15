@@ -1,12 +1,13 @@
 #require all the class here
 require_relative 'ManageInventory'
 require_relative 'Order'
+require_relative 'Update';
 
 
 class IMS
-  def initialize(manageInventory, order)
+  def initialize(manageInventory, order, update)
     #Create all the instance of class here
-    @manageInventory = manageInventory.new
+    @manageInventory = manageInventory.new(update)
     @order = order.new
 
 
@@ -14,7 +15,7 @@ class IMS
     puts "can you please enter your name?"
     @name = gets.chomp
 
-    puts "Welcome to our Inventory Management System #{@name}. If you want to enter in our system press 'enter' otherwise press anything except enter ro exit"
+    puts "Welcome to our Inventory Management System #{@name}. If you want to enter in our system press 'enter' otherwise press anything except enter to exit"
     response = gets.chomp
 
     if response == "enter"
@@ -52,4 +53,4 @@ end
 
 
 #Calling IMS class here
-ims = IMS.new(ManageInventory, Order)
+ims = IMS.new(ManageInventory, Order, Update)
