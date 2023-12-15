@@ -32,13 +32,13 @@ class Order
   end
 
   def add_item_to_cart
-    Inventory.print_inventory
     puts 'Enter the id of the item you want to order: '
     item_id = gets.chomp.to_i
     item = Inventory.get_item(item_id.to_i)
+    raise StandardError.new('Item not found.') if item == nil
     puts "Enter the no of #{item.name} you want: "
     quantity = gets.chomp.to_i
-    raise StandardError 'Invalid Quantity' unless item.quantity >= quantity + cart['item_id']
+    raise StandardError.new('Invalid Quantity') unless item.quantity >= quantity + cart['item_id']
 
     cart[item_id] += quantity
   rescue StandardError => e
