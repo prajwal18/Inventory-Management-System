@@ -10,14 +10,14 @@ class JsonConverter
 
     def get_all_items
       raw_data = File.read(@@path)
-      hash_list = []
+      item_list = []
       if raw_data != ''
-        hash_list = JSON.parse(raw_data)
-        hash_list.collect do |hash|
+        item_list = JSON.parse(raw_data)
+        item_list.collect! do |hash|
           hash_to_item(hash)
         end
       end
-      hash_list
+      item_list
     end
 
     def update_inventory(new_items)
@@ -33,8 +33,8 @@ class JsonConverter
       JSON.parse(json)
     end
 
-    def load_json_from_file
-      File.read(@@path)
+    def load_json_from_file(path)
+      File.read(path)
     end
     # Only used for testing
   end

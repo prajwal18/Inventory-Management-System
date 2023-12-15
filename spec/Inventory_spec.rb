@@ -13,7 +13,7 @@ describe Inventory do
   describe '.get_item' do
     it 'should return an item' do
       item = Inventory.get_item(1)
-      expect(item["id"]).to eql(1)
+      expect(item.id).to eql(1)
     end
   end
 
@@ -35,7 +35,7 @@ describe Inventory do
       new_name = 'KungFu Coffee'
       Inventory.edit_item_name(3, new_name)
       item = Inventory.get_item(3)
-      expect(item["name"]).to eql(new_name)
+      expect(item.name).to eql(new_name)
     end
   end
 
@@ -44,17 +44,17 @@ describe Inventory do
       new_price = 130
       Inventory.edit_item_price(3, new_price)
       item = Inventory.get_item(3)
-      expect(item["price"]).to eql(new_price)
+      expect(item.price).to eql(new_price)
     end
   end
 
   describe '.decrease_item_stock_by' do
     it 'should decrease the stock of an item by n' do
       old_item = Inventory.get_item(3)
-      old_stock = old_item["quantity"]
+      old_stock = old_item.quantity
       Inventory.decrease_item_stock_by(3, 30)
       item = Inventory.get_item(3)
-      new_stock = item["quantity"]
+      new_stock = item.quantity
       expect(new_stock).to eql(old_stock - 30)
     end
   end
@@ -62,10 +62,10 @@ describe Inventory do
   describe '.increase_item_stock_by' do
     it 'should increase the stock of an item by n' do
       old_item = Inventory.get_item(3)
-      old_stock = old_item["quantity"]
+      old_stock = old_item.quantity
       Inventory.increase_item_stock_by(3, 30)
       item = Inventory.get_item(3)
-      new_stock = item["quantity"]
+      new_stock = item.quantity
       expect(new_stock).to eql(old_stock + 30)
     end
   end
