@@ -12,13 +12,13 @@ class IMS
 
 
     #Initial dialogs
-    puts "can you please enter your name?"
+    puts "Enter your name?"
     @name = gets.chomp
 
-    puts "Welcome to our Inventory Management System #{@name}. If you want to enter in our system press 'enter' otherwise press anything except enter to exit"
+    puts "\nWelcome to our Inventory Management System #{@name}. \nIf you want to enter in our system press 'enter' otherwise press anything except enter to exit.\n"
     response = gets.chomp
 
-    if response == "enter"
+    if response == "enter" || response == ''
       start()
     else
       puts "Exiting..."
