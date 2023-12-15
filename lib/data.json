@@ -1,6 +1,1 @@
-{
-  "id": 1,
-  "name": "Doughnut",
-  "price": 100,
-  "quantity": 200
-}
+[{"id":2,"name":"Chicken","price":100,"quantity":100},{"id":3,"name":"KungFu Coffee","price":130,"quantity":100},{"id":4,"name":"Bread","price":100,"quantity":100}]
