@@ -38,4 +38,13 @@ describe JsonConverter do
       expect(item.name).to eql('Chicken')
     end
   end
+
+  describe '.hash_to_item' do
+    it 'should return an item when provided with a hash' do
+      data = JsonConverter.load_json_from_file('./spec/test.json')
+      hash = JsonConverter.json_to_hash(data)
+      item = JsonConverter.hash_to_item(hash)
+      expect(item.name).to eql('Chicken')
+    end
+  end
 end
