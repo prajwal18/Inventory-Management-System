@@ -98,6 +98,14 @@ class Inventory < JsonConverter
     def clear_inventory
       update_inventory([])
     end
+
+    def print_inventory
+      puts "\nInventory:"
+      get_all_items.each do |item| 
+        puts "Id: #{item.id}, Name: #{item.name}, Price: #{item.price}, Quantity: #{item.quantity}"
+      end
+      puts "\n"
+    end
   end
 
   private_class_method :generate_item_id, :new
