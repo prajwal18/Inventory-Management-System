@@ -1,6 +1,6 @@
-require 'Item'
+require_relative 'Item'
 
-require 'JsonConverter'
+require_relative 'JsonConverter'
 
 class Inventory < JsonConverter
   class << self

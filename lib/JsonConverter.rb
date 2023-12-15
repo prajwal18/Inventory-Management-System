@@ -1,5 +1,5 @@
+require_relative 'Item'
 require 'json'
-require 'Item'
 
 class JsonConverter
   @@path = './lib/data.json'
