@@ -1,37 +1,37 @@
-require_relative 'Inventory';
+require_relative 'inventory';
 
-class Update
+class InventoryUpdateManager
 
-  def start()
+  def start
     puts "---Update Inventory Menu ---
-     1)EditName
-     2)EditPrice
-     3)DecreaseQuantity
-     4)IncreaseQuantity
+     1)Edit Name
+     2)Edit Price
+     3)Decrease Quantity
+     4)Increase Quantity
      5)exit
      "
      response = gets.chomp.to_i
 
     case response
     when 1
-      editName()
+      edit_name
      when 2
-      editPrice()
+      edit_price
      when 3
-      decreaseQuantity()
+      decrease_quantity
      when 4
-      increaseQuantity()
+      increase_quantity
      when 5
        puts "Exiting.."
        return
      else
        puts "Please choose valid option"
-       start()
+       start
     end
 
   end
 
-    def editName
+    def edit_name
       puts "Please enter the id of the item you want to edit"
       id = gets.chomp.to_i
       if !Inventory.has_item(id)
@@ -43,11 +43,11 @@ class Update
 
       Inventory.edit_item_name(id, new_name)
       puts "Item name is updated"
-      start()
+      start
     end
 
 
-    def editPrice
+    def edit_price
       puts "Please enter the id of the item you want to edit"
       id = gets.chomp.to_i
       if !Inventory.has_item(id)
@@ -60,7 +60,7 @@ class Update
       puts "Item Price is updated"
     end
 
-    def decreaseQuantity
+    def decrease_quantity
       puts "Please enter the id of the item you want to edit"
       id = gets.chomp.to_i
       if !Inventory.has_item(id)
@@ -74,7 +74,7 @@ class Update
     end
 
 
-    def increaseQuantity
+    def increase_quantity
       puts "Please enter the id of the item you want to edit"
       id = gets.chomp.to_i
       if !Inventory.has_item(id)

@@ -1,4 +1,4 @@
-require_relative 'Item'
+require_relative 'item'
 require 'json'
 
 class JsonConverter

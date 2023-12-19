@@ -1,5 +1,5 @@
-require_relative 'Inventory';
-require_relative 'Update';
+require_relative 'inventory';
+require_relative 'inventory_update_manager';
 
 class ManageInventory
   def initialize(update)
@@ -7,7 +7,7 @@ class ManageInventory
   end
 
   # For starting Menu of ManageInventory
-  def startMenu()
+  def start_menu
     puts "
     -ManageInventoryMenu-
     1)View Inventory
@@ -20,32 +20,32 @@ class ManageInventory
 
     case res
     when 1
-      inventory()
+      inventory
     when 2
-      addSection()
+      add_section
     when 3
-      updateSection()
+      update_section
     when 4
-      deleteSection()
+      delete_section
     when 5
       puts "Exiting.."
     else
       puts "Please choose valid option"
-      startMenu()
+      start_menu
     end
   end
 
 
-  def inventory()
+  def inventory
     inventory = Inventory.get_all_items.collect! {|item| item.to_hash};
     puts "-----------------InventoryList---------------------------"
     puts inventory;
     puts "----------------------------------------------------------"
 
-    startMenu()
+    start_menu
   end
 
-  def addSection()
+  def add_section
     puts "Please add a name of the item you want to add"
     name = gets.chomp
     puts "Please mention Price of item"
@@ -55,15 +55,15 @@ class ManageInventory
 
     Inventory.add_item(name, price, quantity);
     puts "Item is added successfully"
-    startMenu()
+    start_menu
   end
 
-  def updateSection()
-    @update.start()
-    startMenu();
+  def update_section
+    @update.start
+    start_menu;
   end
 
-  def deleteSection()
+  def delete_section
     puts "Please mention the id of the item you want to remove"
     id = gets.chomp.to_i
     if !Inventory.has_item(id)
@@ -73,11 +73,11 @@ class ManageInventory
     Inventory.remove_item(id)
     puts "Item is removed"
 
-    startMenu()
+    start_menu
   end
 end
 
 
 # mi = ManageInventory.new(Update)
 
-# mi.startMenu();
+# mi.start_menu;
