@@ -1,7 +1,6 @@
 require_relative 'inventory'
 
 class InventoryUpdateManager
-  
   def start
     puts "---Update Inventory Menu ---
      1)Edit Name
@@ -40,7 +39,7 @@ class InventoryUpdateManager
     puts 'Please enter the new item name'
     new_name = gets.chomp
 
-    Inventory.edit_item_name(id, new_name)
+    Inventory.modify_item(id, { 'name' => new_name })
     puts 'Item name is updated'
     start
   end
@@ -54,7 +53,8 @@ class InventoryUpdateManager
     end
     puts 'Please enter the new item price'
     new_price = gets.chomp
-    Inventory.edit_item_price(id, new_price)
+
+    Inventory.modify_item(id, { 'price' => new_price })
     puts 'Item Price is updated'
   end
 
@@ -67,8 +67,12 @@ class InventoryUpdateManager
     end
     puts 'How many quantity you want to decrease'
     decrease_number = gets.chomp.to_i
-    Inventory.decrease_item_stock_by(id, decrease_number)
-    puts 'Item quantity is decreased'
+    begin
+      Inventory.decrease_item_stock_by(id, decrease_number)
+      puts 'Item quantity is decreased'
+    rescue StandardError => e
+      puts "Error: #{e.message}"
+    end
   end
 
   def increase_quantity

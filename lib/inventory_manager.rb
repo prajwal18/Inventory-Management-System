@@ -1,15 +1,15 @@
 require_relative 'inventory'
 require_relative 'inventory_update_manager'
 
-class ManageInventory
+class InventoryManager
   def initialize(update)
-    @update = update.new
+    @update = update
   end
 
-  # For starting Menu of ManageInventory
+  # For starting Menu of InventoryManager
   def start_menu
     puts "
-    -ManageInventoryMenu-
+    -Inventory Manager Menu-
     1)View Inventory
     2)Add Items
     3)Update Inventory
@@ -36,9 +36,8 @@ class ManageInventory
   end
 
   def inventory
-    inventory = Inventory.get_all_items.collect! { |item| item.to_hash }
     puts '-----------------InventoryList---------------------------'
-    puts inventory
+    puts Inventory.print_inventory
     puts '----------------------------------------------------------'
 
     start_menu
@@ -76,6 +75,6 @@ class ManageInventory
   end
 end
 
-# mi = ManageInventory.new(Update)
+# mi = InventoryManager.new(Update)
 
 # mi.start_menu;

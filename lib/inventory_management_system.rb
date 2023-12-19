@@ -4,10 +4,10 @@ require_relative 'order_manager'
 require_relative 'inventory_update_manager'
 
 class IMS
-  def initialize(inventory_manager, order_manager, inventory_update_manager)
+  def initialize(inventory_manager, order_manager)
     # Create all the instance of class here
-    @inventory_manager = inventory_manager.new(inventory_update_manager)
-    @order_manager = order_manager.new
+    @inventory_manager = inventory_manager
+    @order_manager = order_manager
 
     # Initial dialogs
     puts 'Enter your name?'
@@ -51,4 +51,7 @@ class IMS
 end
 
 # Calling IMS class here
-ims = IMS.new(ManageInventory, OrderManager, InventoryUpdateManager)
+
+inventory_manager = InventoryManager.new(InventoryUpdateManager.new)
+order_manager = OrderManager.new
+ims = IMS.new(inventory_manager, order_manager)

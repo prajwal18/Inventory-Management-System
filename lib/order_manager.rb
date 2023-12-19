@@ -26,8 +26,10 @@ class OrderManager
       start
     when 3
       puts 'Exiting ....'
+      @cart = Hash.new(0)
     else
       puts 'Invalid Input'
+      @cart = Hash.new(0)
     end
   end
 
