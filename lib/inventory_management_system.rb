@@ -5,10 +5,10 @@ require_relative 'inventory_update_manager';
 
 
 class IMS
-  def initialize(manageInventory, order, update)
+  def initialize(inventory_manager, order_manager, inventory_update_manager )
     #Create all the instance of class here
-    @manageInventory = manageInventory.new(update)
-    @order = order.new
+    @inventory_manager = inventory_manager.new(inventory_update_manager )
+    @order_manager = order_manager.new
 
 
     #Initial dialogs
@@ -19,14 +19,14 @@ class IMS
     response = gets.chomp
 
     if response == "enter" || response == ''
-      start()
+      start
     else
       puts "Exiting..."
     end
   end
 
   # Method for Main Menu
-  def start()
+  def start
     puts "
       --------Main menu-------------
       Press 1 to manage inventory
@@ -37,11 +37,11 @@ class IMS
       res = gets.chomp.to_i
       case res
       when 1
-        @manageInventory.startMenu()
-        start()
+        @inventory_manager.start_menu
+        start
       when 2
-        @order.start()
-        start()
+        @order_manager.start
+        start
       when 3
         puts "Exiting ...."
       else
@@ -53,4 +53,4 @@ end
 
 
 #Calling IMS class here
-ims = IMS.new(ManageInventory, Order, Update)
+ims = IMS.new(ManageInventory, OrderManager, InventoryUpdateManager)

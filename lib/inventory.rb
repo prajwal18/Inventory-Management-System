@@ -3,6 +3,7 @@ require_relative 'item'
 require_relative 'json_converter'
 
 class Inventory < JsonConverter
+  
   class << self
     def generate_item_id
       # analyze the json file and generate an unique id for an item.

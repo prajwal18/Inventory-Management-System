@@ -1,5 +1,5 @@
 require_relative 'inventory'
-class Order
+class OrderManager
   # cart is a of hash with item's id as key and their quantity as value
   attr_accessor :cart
 
@@ -10,7 +10,7 @@ class Order
   def start
     Inventory.print_inventory
     puts "
-      --------Order menu-------------
+      --------OrderManager menu-------------
       Press 1 to add item to your cart
       Press 2 to go to generate bill
       Press 3 to exit
