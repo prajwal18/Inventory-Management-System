@@ -1,13 +1,12 @@
 require 'inventory'
 
 describe Inventory do
-
-  before(:all) do 
+  before(:all) do
     Inventory.clear_inventory
-    Inventory.add_item("Duck", 100, 100)
-    Inventory.add_item("Chicken", 100, 100)
-    Inventory.add_item("Coffee", 100, 100)
-    Inventory.add_item("Bread", 100, 100)
+    Inventory.add_item('Duck', 100, 100)
+    Inventory.add_item('Chicken', 100, 100)
+    Inventory.add_item('Coffee', 100, 100)
+    Inventory.add_item('Bread', 100, 100)
   end
 
   describe '.get_item' do
@@ -17,16 +16,16 @@ describe Inventory do
     end
   end
 
-  describe '.has_item' do
+  describe '.item?' do
     it 'should return false, when an item is not present in the inventory' do
-      expect(Inventory.has_item(22)).to eql(false)
+      expect(Inventory.item?(22)).to eql(false)
     end
   end
 
   describe '.remove_item' do
-    it 'should remove an item from the inventory' do 
+    it 'should remove an item from the inventory' do
       Inventory.remove_item(1)
-      expect(Inventory.has_item(1)).to eql(false)
+      expect(Inventory.item?(1)).to eql(false)
     end
   end
 
@@ -69,7 +68,4 @@ describe Inventory do
       expect(new_stock).to eql(old_stock + 30)
     end
   end
-
-  
-  
 end
