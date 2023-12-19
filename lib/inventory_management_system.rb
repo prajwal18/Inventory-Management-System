@@ -1,7 +1,7 @@
 #require all the class here
-require_relative 'ManageInventory'
-require_relative 'Order'
-require_relative 'Update';
+require_relative 'inventory_manager'
+require_relative 'order_manager'
+require_relative 'inventory_update_manager';
 
 
 class IMS

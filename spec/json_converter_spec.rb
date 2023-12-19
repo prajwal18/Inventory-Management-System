@@ -1,5 +1,5 @@
-require 'JsonConverter'
-require 'Item'
+require 'json_converter'
+require 'item'
 
 describe JsonConverter do
   describe '.hash_to_item' do

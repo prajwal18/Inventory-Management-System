@@ -1,4 +1,4 @@
-require_relative 'Inventory'
+require_relative 'inventory'
 class Order
   # cart is a of hash with item's id as key and their quantity as value
   attr_accessor :cart

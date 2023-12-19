@@ -1,4 +1,4 @@
-require 'Inventory'
+require 'inventory'
 
 describe Inventory do
 

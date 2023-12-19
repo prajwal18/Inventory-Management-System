@@ -1,5 +1,5 @@
-require_relative 'Inventory';
-require_relative 'Update';
+require_relative 'inventory';
+require_relative 'inventory_update_manager';
 
 class ManageInventory
   def initialize(update)

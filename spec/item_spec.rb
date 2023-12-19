@@ -1,4 +1,4 @@
-require 'Item'
+require 'item'
 
 describe Item do
 end
