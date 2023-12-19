@@ -1,5 +1,5 @@
-require_relative 'inventory';
-require_relative 'inventory_update_manager';
+require_relative 'inventory'
+require_relative 'inventory_update_manager'
 
 class ManageInventory
   def initialize(update)
@@ -28,55 +28,53 @@ class ManageInventory
     when 4
       delete_section
     when 5
-      puts "Exiting.."
+      puts 'Exiting..'
     else
-      puts "Please choose valid option"
+      puts 'Please choose valid option'
       start_menu
     end
   end
 
-
   def inventory
-    inventory = Inventory.get_all_items.collect! {|item| item.to_hash};
-    puts "-----------------InventoryList---------------------------"
-    puts inventory;
-    puts "----------------------------------------------------------"
+    inventory = Inventory.get_all_items.collect! { |item| item.to_hash }
+    puts '-----------------InventoryList---------------------------'
+    puts inventory
+    puts '----------------------------------------------------------'
 
     start_menu
   end
 
   def add_section
-    puts "Please add a name of the item you want to add"
+    puts 'Please add a name of the item you want to add'
     name = gets.chomp
-    puts "Please mention Price of item"
+    puts 'Please mention Price of item'
     price = gets.chomp.to_i
-    puts "How many quantity you want to add?"
+    puts 'How many quantity you want to add?'
     quantity = gets.chomp.to_i
 
-    Inventory.add_item(name, price, quantity);
-    puts "Item is added successfully"
+    Inventory.add_item(name, price, quantity)
+    puts 'Item is added successfully'
     start_menu
   end
 
   def update_section
     @update.start
-    start_menu;
+    start_menu
   end
 
   def delete_section
-    puts "Please mention the id of the item you want to remove"
+    puts 'Please mention the id of the item you want to remove'
     id = gets.chomp.to_i
-    if !Inventory.has_item(id)
-      puts "Sorry invalid id"
+    unless Inventory.item?(id)
+      puts 'Sorry invalid id'
       return
     end
     Inventory.remove_item(id)
-    puts "Item is removed"
+    puts 'Item is removed'
 
     start_menu
   end
 end
-
 
 # mi = ManageInventory.new(Update)
 

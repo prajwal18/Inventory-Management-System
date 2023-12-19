@@ -3,7 +3,6 @@ require_relative 'item'
 require_relative 'json_converter'
 
 class Inventory < JsonConverter
-  
   class << self
     def generate_item_id
       # analyze the json file and generate an unique id for an item.
@@ -16,8 +15,7 @@ class Inventory < JsonConverter
     end
 
     def get_item(id)
-      item = get_all_items.select { |itm| itm.id == id }.first
-      item
+      get_all_items.select { |itm| itm.id == id }.first
     end
 
     def add_item(name, price, quantity)
@@ -44,21 +42,17 @@ class Inventory < JsonConverter
       update_inventory(items)
     end
 
-    def has_item(id)
+    def item?(id)
       is_present = get_all_items.any? { |item| item.id == id }
-      if (is_present)
-        return true
-      else
-        return false
-      end
+      return true if is_present
+
+      false
     end
 
     def edit_item_name(id, name)
       # edit an item's name in the inventory
       items = get_all_items.collect do |item|
-         if item.id == id
-          item.name = name
-         end
+        item.name = name if item.id == id
         item
       end
 
@@ -102,7 +96,7 @@ class Inventory < JsonConverter
 
     def print_inventory
       puts "\nInventory:"
-      get_all_items.each do |item| 
+      get_all_items.each do |item|
         puts "Id: #{item.id}, Name: #{item.name}, Price: #{item.price}, Quantity: #{item.quantity}"
       end
       puts "\n"
