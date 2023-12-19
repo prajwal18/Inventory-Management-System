@@ -50,21 +50,9 @@ class Inventory
       false
     end
 
-    def edit_item_name(id, name)
-      # edit an item's name in the inventory
+    def modify_item(id, hash)
       items = all_items.collect do |item|
-        item.name = name if item.id == id
-        item
-      end
-
-      update_inventory(items)
-    end
-
-    def edit_item_price(id, price)
-      # edit an item's price in the inventory
-      items = all_items.collect do |item|
-        item.price = price if item.id == id
-        item
+        item.id == id ? update_item_attributes(item, hash) : item
       end
 
       update_inventory(items)
@@ -72,23 +60,29 @@ class Inventory
 
     def decrease_item_stock_by(id, quantity)
       # decrease item stock in the inventory by (quantity)
-      items = all_items.collect do |item|
-        item.quantity -= quantity if item.id == id and item.quantity != 0
-        item
+      hash = { 'quantity' => 0 }
+
+      all_items.collect do |item|
+        if item.id == id && item.quantity >= quantity
+          hash['quantity'] = item.quantity - quantity
+        elsif item.id == id
+          raise StandardError, "Required quantity: #{quantity}, Available stock: #{item.quantity}"
+        end
       end
 
-      update_inventory(items)
+      modify_item(id, hash)
     end
 
     def increase_item_stock_by(id, quantity)
       # increases item stock in the inventory by (quantity)
+      hash = { 'quantity' => 0 }
 
-      items = all_items.collect do |item|
-        item.quantity += quantity if item.id == id
-        item
+      all_items.collect do |item|
+        item.id == id &&
+          hash['quantity'] = item.quantity + quantity
       end
 
-      update_inventory(items)
+      modify_item(id, hash)
     end
 
     def clear_inventory

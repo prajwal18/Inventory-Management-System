@@ -29,21 +29,19 @@ describe Inventory do
     end
   end
 
-  describe '.edit_item_name' do
+  describe '.modify_item' do
     it 'should change the name of an item' do
-      new_name = 'KungFu Coffee'
-      Inventory.edit_item_name(3, new_name)
+      hash = { 'name' => 'KungFu Coffee' }
+      Inventory.modify_item(3, hash)
       item = Inventory.get_item(3)
-      expect(item.name).to eql(new_name)
+      expect(item.name).to eql(hash['name'])
     end
-  end
 
-  describe '.edit_item_price' do
     it 'should change the price of an item' do
-      new_price = 130
-      Inventory.edit_item_price(3, new_price)
+      hash = { 'price' => 130 }
+      Inventory.modify_item(3, hash)
       item = Inventory.get_item(3)
-      expect(item.price).to eql(new_price)
+      expect(item.price).to eql(hash['price'])
     end
   end
 

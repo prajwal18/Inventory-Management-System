@@ -8,6 +8,14 @@ module JsonConverter
     Item.new(hash['id'], hash['name'], hash['price'], hash['quantity'])
   end
 
+  def update_item_attributes(item, hash)
+    item_hash = item.to_hash
+    hash.each do |key, value|
+      item_hash[key] = value
+    end
+    hash_to_item(item_hash)
+  end
+
   def all_items
     raw_data = File.read(PATH)
     item_list = []
