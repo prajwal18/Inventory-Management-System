@@ -36,7 +36,7 @@ class ManageInventory
   end
 
   def inventory
-    inventory = Inventory.get_all_items.collect! { |item| item.to_hash }
+    inventory = Inventory.all_items.collect! { |item| item.to_hash }
     puts '-----------------InventoryList---------------------------'
     puts inventory
     puts '----------------------------------------------------------'
