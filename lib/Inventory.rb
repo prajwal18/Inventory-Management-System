@@ -28,12 +28,25 @@ class Inventory
   def update_quantity(name, new_quantity, type)
     case type
     when 'Increase'
-      @hash[name]['quantity'] += new_quantity
+      increase_quantity(name, new_quantity)
 
     when 'Decrease'
-      return 'Quantity of items is less than quantity you want to decrease' if @hash[name]['quantity'] < new_quantity
-      @hash[name]['quantity']  -= new_quantity if @hash[name]['quantity'] > 0
+      decrease_quantity(name, new_quantity)
     end
+  end
+
+  def increase_quantity(name, amount)
+    @hash[name]['quantity'] += amount
+  end
+
+  def decrease_quantity(name, amount)
+    return 'Quantity of items is less than quantity you want to decrease' if @hash[name]['quantity'] < amount
+    @hash[name]['quantity'] -= amount if @hash[name]['quantity'] > 0
+  end
+
+
+  def get_item(name)
+    return @hash[name] if @hash.key?(name)
   end
 
 
