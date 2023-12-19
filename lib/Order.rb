@@ -1,14 +1,15 @@
-require_relative 'Inventory'
+
 class Order
   # cart is a of hash with item's id as key and their quantity as value
   attr_accessor :cart
 
-  def initialize
+  def initialize(inventory)
     @cart = Hash.new(0)
+    @inventory = inventory
   end
 
   def start
-    Inventory.print_inventory
+    Inventory.
     puts "
       --------Order menu-------------
       Press 1 to add item to your cart
