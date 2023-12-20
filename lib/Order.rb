@@ -9,7 +9,7 @@ class Order
   end
 
   def start
-    Inventory.
+    @inventory.info
     puts "
       --------Order menu-------------
       Press 1 to add item to your cart
@@ -33,9 +33,11 @@ class Order
   end
 
   def add_item_to_cart
-    puts 'Enter the id of the item you want to order: '
+    puts 'Enter the name of the item you want to order: '
+    name = gets.chomp
     item = @inventory.get_item(name)
     raise StandardError.new('Item not found.') if item == nil
+
     puts "Enter the no of #{item.name} you want: "
     quantity = gets.chomp.to_i
     raise StandardError.new('Invalid Quantity') unless item.quantity >= quantity + cart['item_id']
@@ -51,10 +53,10 @@ class Order
 
     puts "Cart #{@cart}"
 
-    @cart.each do |item_id, quantity|
+    @cart.each do |name, quantity|
       line_total = 0
-      item = @inventory.get_item(item_id.to_i)
-      @inventory.decrease_item_stock_by(item_id, quantity)
+      item = @inventory.get_item(name)
+      @inventory.decrease_quantity(name, quantity)
       line_total = item.price * quantity
       bill += "Item: #{item.name}, Quantity: #{quantity}, Price: Rs.#{item.price}, Total: Rs.#{line_total}\n"
       total += line_total

@@ -46,6 +46,8 @@ class Inventory
   end
 
   def get_item(name)
-    @hash[name] if @hash.key?(name)
+    return @hash[name] if @hash.key?(name)
+
+    puts 'Item not found, Sorry!!!'
   end
 end

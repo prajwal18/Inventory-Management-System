@@ -14,7 +14,8 @@ class ManageInventory
     1)View Inventory
     2)Add Items
     3)Update Inventory
-    4)Exit
+    4)Get Specific Items
+    5)Exit
     "
     res = gets.chomp.to_i
 
@@ -26,6 +27,8 @@ class ManageInventory
     when 3
       update_section
     when 4
+      specific_item_details
+    when 5
       puts 'Exiting..'
     else
       puts 'Please choose valid option'
@@ -64,5 +67,11 @@ class ManageInventory
   def update_section
     @update.start
     start_menu
+  end
+
+  def specific_item_details
+    puts 'Enter the specific name of the item you want to check details : '
+    name = gets.chomp
+    puts @inventory.get_item(name)
   end
 end
