@@ -1,25 +1,24 @@
-#require all the class here
+# require all the class here
 require_relative 'manage_inventory'
 require_relative 'order'
-require_relative 'update_menu'
+require_relative 'menu_updater'
 require_relative 'inventory'
 
 
 class InventoryManagementSystem
   def initialize(manage_inventory, order)
-    #Create all the instance of class here
+    # Create all the instance of class here
     @manage_inventory = manage_inventory
     @order = order
 
-
-    #Initial dialogs
+    # Initial dialogs
     puts 'Enter your name?'
     @name = gets.chomp
 
     puts "\nWelcome to our Inventory Management System #{@name}. \nIf you want to enter in our system press 'enter' otherwise press anything except enter to exit.\n"
     response = gets.chomp
 
-    if response == 'enter' || response == ''
+    if ['enter', ''].include?(response)
       start
     else
       puts 'Exiting...'
@@ -51,16 +50,14 @@ class InventoryManagementSystem
   end
 end
 
-
-
-#Calling IMS class here
-#inventory instance
+# Calling IMS class here
+# inventory instance
 inventory = Inventory.new
-#update instance
+# update instance
 update = Update.new(inventory)
 # manage_inventory instance
 manage_inventory = ManageInventory.new(update, inventory)
-#order instance
+# order instance
 order = Order.new(inventory)
-#Main Inventory Management System instance
+# Main Inventory Management System instance
 ims = InventoryManagementSystem.new(manage_inventory, order)

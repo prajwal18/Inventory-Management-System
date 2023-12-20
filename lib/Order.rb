@@ -34,8 +34,7 @@ class Order
 
   def add_item_to_cart
     puts 'Enter the id of the item you want to order: '
-    item_id = gets.chomp.to_i
-    item = Inventory.get_item(item_id.to_i)
+    item = @inventory.get_item(name)
     raise StandardError.new('Item not found.') if item == nil
     puts "Enter the no of #{item.name} you want: "
     quantity = gets.chomp.to_i
@@ -54,8 +53,8 @@ class Order
 
     @cart.each do |item_id, quantity|
       line_total = 0
-      item = Inventory.get_item(item_id.to_i)
-      Inventory.decrease_item_stock_by(item_id, quantity)
+      item = @inventory.get_item(item_id.to_i)
+      @inventory.decrease_item_stock_by(item_id, quantity)
       line_total = item.price * quantity
       bill += "Item: #{item.name}, Quantity: #{quantity}, Price: Rs.#{item.price}, Total: Rs.#{line_total}\n"
       total += line_total

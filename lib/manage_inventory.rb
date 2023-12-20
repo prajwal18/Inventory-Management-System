@@ -1,4 +1,6 @@
+# frozen_string_literal: true
 
+# ManageInventory is class used for Adding, viewing and updating Inventory
 class ManageInventory
   def initialize(update, inventory)
     @update = update
@@ -31,7 +33,6 @@ class ManageInventory
     end
   end
 
-
   def inventory
     puts '-----------------InventoryList---------------------------'
     puts @inventory.info
@@ -50,20 +51,18 @@ class ManageInventory
     puts 'How many quantity you want'
     quantity = gets.chomp.to_i
 
-     if quantity == 0 or price == 0
+    if quantity.zero? || price.zero?
       puts 'Please enter valid number for quantity and price'
       start_menu
-     end
+    end
 
     @inventory.add_info(name, price, quantity)
 
     start_menu
-
   end
 
   def update_section
     @update.start
     start_menu
   end
-
 end
